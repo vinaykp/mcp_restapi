@@ -5,7 +5,7 @@ import asyncio
 
 # Create transport with authentication headers
 transport = StreamableHttpTransport(
-    url="http://127.0.0.1:4200/mcp1",
+    url="http://127.0.0.1:4200/mcp-server/mcp",
     # headers={"Authorization": "Bearer your-token-here"}
 )
 client = Client(transport)
@@ -24,7 +24,7 @@ async def main():
         # print(f"Available tools: {tools}")
         greeting = await client.call_tool("greet", {"name": "Alice......"})
         print(f"Greeting: {greeting}")
-        product = await client.call_tool("multiply", {"a": 3.5, "b": 2.0})
-        print(f"Product: {product}")
+        multiply = await client.call_tool("multiply", {"a": 3.5, "b": 2.0})
+        print(f"Multiply: {multiply}")
       
 asyncio.run(main())
