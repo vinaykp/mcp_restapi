@@ -3,6 +3,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from mcp_server import mcp
 from health_check import health_router
+from loguru import logger
+import logger_config  # This will setup the logger configuration
+
+logger.info("Initializing MCP HTTP Server")
 
 # Create the ASGI app
 mcp_app = mcp.http_app(path='/mcp')
@@ -12,6 +16,7 @@ app = FastAPI(lifespan=mcp_app.lifespan,
                   version="0.0.1",
                   title="HTTP Server")
 
+logger.debug("Configuring CORS middleware")
 # Enable CORS
 app.add_middleware(
     CORSMiddleware,
@@ -28,6 +33,7 @@ app.mount("/mcp-server", mcp_app)
 
 # Run the server
 if __name__ == "__main__":
+    logger.info(f"Server starting on http://127.0.0.1:4200")
     uvicorn.run(
         app,
         host="127.0.0.1",

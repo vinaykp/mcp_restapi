@@ -7,5 +7,6 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.115.12",
     "fastmcp>=2.5.2",
+    "loguru>=0.7.3",
     "unicorn>=2.1.3",
 ]

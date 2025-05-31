@@ -3,11 +3,13 @@ import asyncio
 from typing import Dict, Any
 from fastapi import APIRouter, Request, status
 from fastapi.responses import JSONResponse
+from loguru import logger
 
 health_router = APIRouter()
 
 async def check_external_api_availability():
     """Simulates checking an external API."""
+    logger.debug("Checking external API availability")
     await asyncio.sleep(0.02) # Simulate network latency
     return True
 
@@ -16,6 +18,7 @@ async def health_check(request: Request):
     """
     Performs a comprehensive health check of the MCP server and its dependencies.
     """
+    logger.debug("Processing health check request")
     health_status = {
         "status": "UP",
         "timestamp": datetime.datetime.utcnow().isoformat(),
