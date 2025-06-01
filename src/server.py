@@ -1,11 +1,11 @@
 import uvicorn
 from fastapi import FastAPI, Request, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
-from mcp_server import mcp
+from tools.mcp_server import mcp
 from health_check import health_router
 from loguru import logger
-import logger_config  # This will setup the logger configuration
-from middleware import auth_middleware
+import config.logger_config as logger_config  # This will setup the logger configuration
+from middleware.middleware import auth_middleware
 
 logger.info("Initializing MCP HTTP Server")
 

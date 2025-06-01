@@ -53,7 +53,6 @@ async def readiness_check():
         )
     return {"status": "READY"}
 
-
 @health_router.get("/live", status_code=status.HTTP_200_OK, tags=["Health"])
 async def liveness_check():
     """

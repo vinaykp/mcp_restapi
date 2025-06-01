@@ -25,7 +25,7 @@ async def get_user_repositories(username: str):
     return await list_repositories(username)
 
 @mcp.tool()
-async def list_repositories(username: str):
+async def list_repositories(username: str) -> dict:
     """List repositories of the given username."""
     headers = get_http_headers()
     logger.debug(f"Fetching repositories for user: {username} with headers: {headers}")
