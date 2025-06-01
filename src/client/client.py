@@ -11,7 +11,7 @@ token = os.getenv("AUTH_TOKEN")
 
 # Create transport with authentication headers
 transport = StreamableHttpTransport(
-    url="http://127.0.0.1:4200/mcp-server/mcp",
+    url="http://127.0.0.1:8000/mcp-server/mcp",
     headers={"Authorization": f"Bearer {token}"}
 )
 client = Client(transport)

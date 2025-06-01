@@ -37,10 +37,10 @@ app.mount("/mcp-server", mcp_app)
 
 # Run the server
 if __name__ == "__main__":
-    logger.info(f"Server starting on http://127.0.0.1:4200")
+    logger.info(f"Server starting on http://127.0.0.1:8000")
     uvicorn.run(
         app,
         host="127.0.0.1",
-        port=4200,
+        port=8000,
         log_level="debug"
     )
