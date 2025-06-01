@@ -1,10 +1,11 @@
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from mcp_server import mcp
 from health_check import health_router
 from loguru import logger
 import logger_config  # This will setup the logger configuration
+from middleware import auth_middleware
 
 logger.info("Initializing MCP HTTP Server")
 
@@ -26,8 +27,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include health check routes
-app.include_router(health_router)
+app.include_router(health_router)  
+
+# Add the middleware to the app
+app.middleware("http")(auth_middleware)
+
 app.mount("/mcp-server", mcp_app)
 # The MCP endpoint will be available at /mcp-server/mcp of the resulting FastAPI app.
 
